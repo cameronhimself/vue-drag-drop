@@ -1,0 +1,60 @@
+{
+  "name": "vue-drag-drop",
+  "description": "A lightweight Vue wrapper that abstracts away the wonkier parts of the Drag and Drop Browser API",
+  "version": "0.1.0",
+  "author": {
+    "name": "J. Cameron McDonald",
+    "email": "cameronhimself@gmail.com"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "plugin"
+  ],
+  "license": "MIT",
+  "main": "dist/vue-drag-drop.common.js",
+  "unpkg": "dist/vue-drag-drop.browser.js",
+  "module": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.dev.js --progress --watch",
+    "build": "npm run build:browser && npm run build:common",
+    "build:browser": "cross-env NODE_ENV=production webpack --config config/webpack.config.browser.js --progress --hide-modules",
+    "build:common": "cross-env NODE_ENV=production webpack --config config/webpack.config.common.js --progress --hide-modules",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronhimself/vue-drag-drop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cameronhimself/vue-drag-drop/issues"
+  },
+  "homepage": "https://github.com/cameronhimself/vue-drag-drop#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.5",
+    "eslint": "^4.5.0",
+    "eslint-config-genius": "^0.1.4",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.5",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "keykey": "^2.1.1",
+    "uniqid": "^4.1.1",
+    "vue": "^2.4.2"
+  }
+}
