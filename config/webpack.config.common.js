@@ -4,7 +4,6 @@ var base = require('./webpack.config.base');
 var path = require('path');
 
 var outputFile = 'vue-drag-drop';
-var globalName = 'VueDragDrop';
 
 module.exports = merge(base, {
   output: {
@@ -24,6 +23,11 @@ module.exports = merge(base, {
         warnings: true,
       },
       mangle: false,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production'),
+      },
     }),
   ],
 });
