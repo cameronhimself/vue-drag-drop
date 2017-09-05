@@ -1,6 +1,5 @@
 import Drag from './Drag.vue';
 import Drop from './Drop.vue';
-/* eslint-disable no-console */
 
 // Install the components
 export function install(Vue) {
