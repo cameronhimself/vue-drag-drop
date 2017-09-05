@@ -24,6 +24,11 @@ And so on.
 
 The goal of this package is to provide a simple, lightweight wrapper around the API so you don't have to fiddle with all that nonsense. There are [plenty of existing Vue components](https://github.com/vuejs/awesome-vue#drag-and-drop) that provide rich handling of drag and drop, usually between or among lists and with tons of bells and whistles. They're great, but sometimes you don't need all that business, or it even gets in the way.
 
+Take a look at some examples to get started:
+- [Live demos of many scenarios](https://cameronhimself.github.io/vue-drag-drop/)
+  - [Source code for above](https://github.com/cameronhimself/vue-drag-drop-demo/tree/master/src)
+- [Minimal JSFiddle](https://jsfiddle.net/cameronhimself/hvvaadk9/)
+
 # Installation
 
 ```
@@ -181,7 +186,9 @@ Multiple `image` slots do nothing; only the first will be used. If both the `ima
 
 # Examples
 
-> TODO
+- [Live demos of many scenarios](https://cameronhimself.github.io/vue-drag-drop/)
+  - [Source code for above](https://github.com/cameronhimself/vue-drag-drop-demo/tree/master/src)
+- [Minimal JSFiddle](https://jsfiddle.net/cameronhimself/hvvaadk9/)
 
 ---
 
