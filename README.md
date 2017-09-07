@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/vue-drag-drop.svg) ![npm](https://img.shields.io/npm/dm/vue-drag-drop.svg)](https://www.npmjs.com/package/vue-drag-drop)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
-A lightweight wrapper that abstracts away the wonkier parts of the [Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
+> A lightweight wrapper that abstracts away the wonkier parts of the [Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API). View a [live demo](https://cameronhimself.github.io/vue-drag-drop/).
 
 ## Table of contents
 
@@ -142,7 +142,7 @@ myListener(myArg, transferData, nativeEvent) {
 }
 ```
 
-If you don't have the spread operator in your development environment, you can use a wrapping function:
+If you don't have the spread operator in your environment, you can use a wrapping function:
 
 ```javascript
 <drag @drag="function(transferData, nativeEvent) { myListener('foo', transferData, nativeEvent) }">
@@ -150,37 +150,46 @@ If you don't have the spread operator in your development environment, you can u
 </drag>
 ```
 
-### `dragstart` (_`Drag`_)
+### `dragstart`
+**components:** _`Drag`_  
 Fired once when dragging starts.
 
-### `drag` (_`Drag`_)
+### `drag`
+**components:** _`Drag`_  
 Repeatedly fired for the entire duration of the drag operation.
 
-### `dragenter` (_`Drag`_, _`Drop`_)
+### `dragenter`
+**components:** _`Drag`_, _`Drop`_  
 Fired once every time a `Drag` is dragged over a `Drop`.
 
-### `dragover` (_`Drag`_, _`Drop`_)
+### `dragover`
+**components:** _`Drag`_, _`Drop`_  
 Repeatedly fired while a `Drag` is over a `Drop`.
 
-### `dragleave` (_`Drag`_, _`Drop`_)
+### `dragleave`
+**components:** _`Drag`_, _`Drop`_  
 Fired once every time a `Drag` leaves a `Drop`.
 
-### `drop` (_`Drop`_)
+### `drop`
+**components:** _`Drop`_   
 Fired once when a `Drag` is dropped on a `Drop`.
 
-### `dragend` (_`Drag`_)
+### `dragend`
+**components:** _`Drag`_  
 Fired once when the drag operation is completed. Occurs after `drop`.
 
 ## Slots
 
-### _default_ (_`Drag`_, _`Drop`_)
+### _default_
+**components:** _`Drag`_, _`Drop`_  
 **example**: `<drag>I am the default slot</drag>`  
 **example**: `<drop>So am I</drop>`  
 For `Drag`, the content that will be draggable. For `Drop`, the content over which a `Drag` can be dropped.
 
-### `image` (_`Drag`_)
+### `image`
+**components:** _`Drag`_  
 **example**: `<drag>Drag Me<slot="image">I'm being dragged!</slot></drag>`  
-The contents of this slot will be used as the drag image instead of the browser default. Since the spec likes to be annoying, this content has to be visible in order for it to show up as the drag image, so it's rendered off-screen for you using `position: fixed`. If you need this convenience turned off, or if you need to support a crummy browser that this doesn't work will with, you can set the `hideImageHtml` prop to `false`, which will prevent any additional styling being added. Just be aware that doing so will cause this content to appear inside the `Drag` element. It's up to you how to deal with it.
+The contents of this slot will be used as the drag image instead of the browser default. Since the spec likes to be annoying, this content has to be visible in order for it to show up as the drag image, so it's rendered off-screen for you using `position: fixed`. If you need this convenience turned off, or if you need to support a crummy browser that this doesn't work well with, you can set the `hideImageHtml` prop to `false`, which will prevent any additional styling being added. Just be aware that doing so will cause this content to appear inside the `Drag` element. It's up to you how to deal with it.
 
 Multiple `image` slots do nothing; only the first will be used. If both the `image` prop and `image` slot are present, the prop will be used and the slot will be ignored.
 
