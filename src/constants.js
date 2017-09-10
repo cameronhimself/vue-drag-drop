@@ -4,10 +4,10 @@ export const mimeType = 'text/x-vue-drag-drop-key';
 export const mimeDelimiter = ':';
 export const smuggleKeyMimeType = `${mimeType}${mimeDelimiter}`;
 export const events = keyMirror([
-  'drag', 'dragend',  'dragenter', 'dragleave', 'dragstart', 'dragover', 'drop',
+	'drag', 'dragend',  'dragenter', 'dragleave', 'dragstart', 'dragover', 'drop',
 ]);
 export const dropEffects = keyMirror(['copy', 'move', 'link', 'none']);
 export const effectsAllowed = keyMirror([
-  'none', 'copy', 'copyLink', 'copyMove', 'link', 'linkMove', 'move', 'all',
-  'uninitialized',
+	'none', 'copy', 'copyLink', 'copyMove', 'link', 'linkMove', 'move', 'all',
+	'uninitialized',
 ]);
