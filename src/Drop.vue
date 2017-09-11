@@ -3,8 +3,10 @@
 		@dragenter="emitEvent(events.dragenter, $event)"
 		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragover.prevent="emitEvent(events.dragover, $event)"
-		@drop="emitEvent('drop', $event)"
-	><slot></slot></div>
+		@drop="emitEvent(events.drop, $event)"
+	>
+		<slot :transferData="transferData"></slot>
+	</div>
 </template>
 
 <script>
