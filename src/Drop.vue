@@ -10,30 +10,67 @@
 </template>
 
 <script>
-	import { smuggledDataCache, transferDataStore } from './stores';
+	import { transferDataStore } from './stores';
 	import { events, mimeType, mimeDelimiter, smuggleKeyMimeType } from './constants';
 
+	const insideElements = new Set();
+
 	export default {
-		computed: { events: () => events },
+		data: () => ({ dataKey: null }),
+		computed: {
+			events: () => events,
+			transferDataStore: () => transferDataStore,
+			transferData() {
+				return this.transferDataStore[this.dataKey];
+			},
+		},
 		methods: {
 			emitEvent(name, nativeEvent) {
-				let data;
+				// Before emitting the event, set the transfer data.
 				if (name === events.drop) {
-					const key = nativeEvent.dataTransfer.getData(mimeType);
-					data = key && transferDataStore[key];
+					this.dataKey = nativeEvent.dataTransfer.getData(mimeType);
 				} else {
-					if (! smuggledDataCache.isSet) {
+					if (! this.dataKey) {
 						const type = nativeEvent.dataTransfer.types.find(
 							t => t.startsWith(smuggleKeyMimeType)
 						);
 						if (type) {
-							const key = type.split(mimeDelimiter)[1];
-							smuggledDataCache.set(key && transferDataStore[key]);
+							this.dataKey = type.split(mimeDelimiter)[1];
 						}
 					}
-					data = smuggledDataCache.data;
 				}
-				this.$emit(name, data, nativeEvent);
+
+				// Emit
+				this.$emit(name, this.transferData, nativeEvent);
+
+				/**
+				 * After emitting the event, we need to determine if we're still 
+				 * dragging inside this Drop. We keep a Set of all elements that we've
+				 * dragged into, then clear the data if that set is empty.
+				 */
+
+				// Add to the set on dragenter.
+				if (name === events.dragenter) {
+					if (insideElements.size || nativeEvent.target === this.$el) {
+						insideElements.add(nativeEvent.target);
+					}
+				}
+
+				// Remove from the set on dragleave.
+				if (name === events.dragleave) {
+					insideElements.delete(nativeEvent.target);
+
+					// If we're no longer inside any elements, delete data.
+					if (! insideElements.size) {
+						this.dataKey = null;
+					}
+				}
+
+				// A drop resets everything.
+				if (name === events.drop) {
+				  this.dataKey = null;
+				  insideElements.clear();
+				}
 			},
 		},
 	};

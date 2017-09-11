@@ -7,17 +7,17 @@
 		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragend="emitEvent(events.dragend, $event)"
 	>
-		<slot></slot>
+		<slot :transferData="scopedData"></slot>
 		<div v-if="hideImageHtml" :style="hideImageStyle">
-			<slot name="image"></slot>
+			<slot name="image" :transferData="scopedData"></slot>
 		</div>
-		<slot v-else name="image"></slot>
+		<slot v-else name="image" :transferData="scopedData"></slot>
 	</div>
 </template>
 
 <script>
 	import uniqid from 'uniqid';
-	import { transferDataStore, smuggledDataCache } from './stores';
+	import { transferDataStore } from './stores';
 	import {
 		dropEffects, effectsAllowed, events, mimeType, smuggleKeyMimeType,
 	} from './constants';
@@ -33,10 +33,13 @@
 			hideImageHtml: { type: Boolean, default: true },
 		},
 		data() {
-			return { id: uniqid() };
+			return { id: uniqid(), dragging: false };
 		},
 		computed: {
 			events: () => events,
+			scopedData() {
+				return this.dragging && this.transferData;
+			},
 			hideImageStyle: () => ({ position: 'fixed', top: '-1000px' }),
 		},
 		methods: {
@@ -71,19 +74,23 @@
 
 					// Set the transfer data
 					if (this.transferData !== undefined) {
-						transferDataStore[this.id] = this.transferData;
+						this.$set(transferDataStore, this.id, this.transferData);
 						transfer.setData(mimeType, this.id);
 						transfer.setData(`${smuggleKeyMimeType}${this.id}`, this.id);
 					}
+
+					// Indicate that we're dragging.
+					this.dragging = true;
 				}
 
-				// Clean up stored data on drag end.
-				if (name === events.dragend) {
-					delete transferDataStore[this.id];
-					smuggledDataCache.destroy();
-				}
-
+				// At last, emit the event.
 				this.$emit(name, this.transferData, nativeEvent);
+
+				// Clean up stored data on drag end after emitting.
+				if (name === events.dragend) {
+					this.$delete(transferDataStore, this.id);
+					this.dragging = false;
+				}
 			},
 		},
 	};

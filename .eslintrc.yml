@@ -6,4 +6,5 @@ extends: eslint-config-genius
 plugins:
   - html
 env:
+  es6: true
   browser: true
