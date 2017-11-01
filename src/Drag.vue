@@ -1,6 +1,6 @@
 <template>
 	<div
-		:draggable="true"
+		:draggable="draggable"
 		@drag="emitEvent(events.drag, $event)"
 		@dragstart="emitEvent(events.dragstart, $event)"
 		@dragenter="emitEvent(events.dragenter, $event)"
@@ -24,6 +24,7 @@
 
 	export default {
 		props: {
+			draggable: { type: Boolean, default: true },
 			transferData: {},
 			dropEffect: { validator: (value) => value in dropEffects },
 			effectAllowed: { validator: (value) => value in effectsAllowed },
