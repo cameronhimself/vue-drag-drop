@@ -89,6 +89,11 @@ An element onto which a `Drag` can be dropped. All `Drop` elements accept all `D
 
 The following properties apply to `Drag` components. `Drop` components don't receive any properties.
 
+### `draggable`
+**validation** `Boolean`  
+**default**: `true`  
+Whether or not the draggable is actually draggable. Useful if you need to disable it temporarily.
+
 ### `transferData`
 **validation**: none  
 **default**: `null`  
@@ -185,6 +190,8 @@ Fired once when the drag operation is completed. Occurs after `drop`.
 **example**: `<drag>I am the default slot</drag>`  
 **example**: `<drop>So am I</drop>`  
 For `Drag`, the content that will be draggable. For `Drop`, the content over which a `Drag` can be dropped.
+
+Note that this is a [scoped slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots). The scope contains a single key, `transferData`, which will contain exactly what you set in the `transferData` prop on the `Drag`. For `Drag` elements, this will be populated while a drag is in action, and for `Drop` elements, when a `Drag` is being dragged over. Checking for the `transferData` in the `Drop` scope is the simplest way to determine if a drag is in progress over it.
 
 ### `image`
 **components:** _`Drag`_  
