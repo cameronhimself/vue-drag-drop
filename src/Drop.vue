@@ -1,12 +1,12 @@
 <template>
-	<div
+	<component :is="tag"
 		@dragenter="emitEvent(events.dragenter, $event)"
 		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragover.prevent="emitEvent(events.dragover, $event)"
 		@drop="emitEvent(events.drop, $event)"
 	>
 		<slot :transferData="transferData"></slot>
-	</div>
+	</component>
 </template>
 
 <script>
@@ -16,8 +16,11 @@
 	const insideElements = new Set();
 
 	export default {
+        props: {
+            tag: { type: String, default: 'div' },
+        },
 		data: () => ({ dataKey: null }),
-		computed: {
+        computed: {
 			events: () => events,
 			transferDataStore: () => transferDataStore,
 			transferData() {
