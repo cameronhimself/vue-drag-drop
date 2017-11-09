@@ -44,7 +44,7 @@
 				this.$emit(name, this.transferData, nativeEvent);
 
 				/**
-				 * After emitting the event, we need to determine if we're still 
+				 * After emitting the event, we need to determine if we're still
 				 * dragging inside this Drop. We keep a Set of all elements that we've
 				 * dragged into, then clear the data if that set is empty.
 				 */
