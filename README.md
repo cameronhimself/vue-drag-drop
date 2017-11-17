@@ -129,7 +129,7 @@ If the `Drag` `image` slot is used, toggle whether or not the HTML is rendered o
 ### `tag`
 **validation** `String`
 **default**: `div`
-Drag or Drop element's wrapper , defaults to div
+Drag or Drop element's wrapper, defaults to div.
 
 
 ## Events

@@ -16,11 +16,11 @@
 	const insideElements = new Set();
 
 	export default {
-        props: {
-            tag: { type: String, default: 'div' },
-        },
+		props: {
+			tag: { type: String, default: 'div' },
+		},
 		data: () => ({ dataKey: null }),
-        computed: {
+		computed: {
 			events: () => events,
 			transferDataStore: () => transferDataStore,
 			transferData() {
