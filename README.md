@@ -126,6 +126,11 @@ By default, a custom drag image is position so that its top-left corner is ancho
 **default**: `true`  
 If the `Drag` `image` slot is used, toggle whether or not the HTML is rendered off-screen. See the `image` slot documentation for more details.
 
+### `tag`
+**validation** `String`
+**default**: `div`
+Drag or Drop element's wrapper, defaults to div.
+
 
 ## Events
 

@@ -1,12 +1,12 @@
 <template>
-	<div
+	<component :is="tag"
 		@dragenter="emitEvent(events.dragenter, $event)"
 		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragover.prevent="emitEvent(events.dragover, $event)"
 		@drop="emitEvent(events.drop, $event)"
 	>
 		<slot :transferData="transferData"></slot>
-	</div>
+	</component>
 </template>
 
 <script>
@@ -16,6 +16,9 @@
 	const insideElements = new Set();
 
 	export default {
+		props: {
+			tag: { type: String, default: 'div' },
+		},
 		data: () => ({ dataKey: null }),
 		computed: {
 			events: () => events,
@@ -44,7 +47,7 @@
 				this.$emit(name, this.transferData, nativeEvent);
 
 				/**
-				 * After emitting the event, we need to determine if we're still 
+				 * After emitting the event, we need to determine if we're still
 				 * dragging inside this Drop. We keep a Set of all elements that we've
 				 * dragged into, then clear the data if that set is empty.
 				 */

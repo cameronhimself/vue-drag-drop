@@ -1,5 +1,5 @@
 <template>
-	<div
+	<component :is="tag"
 		:draggable="draggable"
 		@drag="emitEvent(events.drag, $event)"
 		@dragstart="emitEvent(events.dragstart, $event)"
@@ -12,7 +12,7 @@
 			<slot name="image" :transferData="scopedData"></slot>
 		</div>
 		<slot v-else name="image" :transferData="scopedData"></slot>
-	</div>
+	</component>
 </template>
 
 <script>
@@ -32,6 +32,7 @@
 			imageXOffset: { type: Number, default: 0 },
 			imageYOffset: { type: Number, default: 0 },
 			hideImageHtml: { type: Boolean, default: true },
+			tag: { type: String, default: 'div' },
 		},
 		data() {
 			return { id: uniqid(), dragging: false };
