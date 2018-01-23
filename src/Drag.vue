@@ -71,7 +71,9 @@
 						} else if (this.$slots.image) {
 							image = this.$slots.image[0].elm;
 						}
-						transfer.setDragImage(image, this.imageXOffset, this.imageYOffset);
+						if (transfer.setDragImage) {
+							transfer.setDragImage(image, this.imageXOffset, this.imageYOffset);
+						}
 					}
 
 					// Set the transfer data

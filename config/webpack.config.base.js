@@ -5,7 +5,7 @@ var outputFile = 'vue-drag-drop';
 var config = require('../package.json');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/polyfills.js', './src/index.js'],
   module: {
     rules: [
       {

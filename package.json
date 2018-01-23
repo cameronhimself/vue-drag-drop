@@ -53,6 +53,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "core-js": "^2.5.3",
     "uniqid": "^4.1.1"
   }
 }
