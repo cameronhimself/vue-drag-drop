@@ -34,7 +34,14 @@
 					this.dataKey = nativeEvent.dataTransfer.getData(mimeType);
 				} else {
 					if (! this.dataKey) {
-						const type = nativeEvent.dataTransfer.types.find(
+						// DOMStringList to array
+						const types = nativeEvent.dataTransfer.types;
+						const typesArray = [];
+						for (let i = types.length >>> 0; i--;) {
+							typesArray[i] = types[i];
+						}
+
+						const type = typesArray.find(
 							t => t.startsWith(smuggleKeyMimeType)
 						);
 						if (type) {
