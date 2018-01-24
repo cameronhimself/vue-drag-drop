@@ -1,12 +1,14 @@
 {
   "name": "vue-drag-drop",
   "description": "A lightweight Vue wrapper that abstracts away the wonkier parts of the Drag and Drop Browser API",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "J. Cameron McDonald",
     "email": "cameronhimself@gmail.com"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "vue",
     "vuejs",
