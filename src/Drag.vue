@@ -7,11 +7,11 @@
 		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragend="emitEvent(events.dragend, $event)"
 	>
-		<slot :transferData="scopedData"></slot>
+		<slot :transfer-data="scopedData"></slot>
 		<div v-if="hideImageHtml" :style="hideImageStyle">
-			<slot name="image" :transferData="scopedData"></slot>
+			<slot name="image" :transfer-data="scopedData"></slot>
 		</div>
-		<slot v-else name="image" :transferData="scopedData"></slot>
+		<slot v-else name="image" :transfer-data="scopedData"></slot>
 	</component>
 </template>
 

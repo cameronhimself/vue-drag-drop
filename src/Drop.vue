@@ -5,7 +5,7 @@
 		@dragover.prevent="emitEvent(events.dragover, $event)"
 		@drop="emitEvent(events.drop, $event)"
 	>
-		<slot :transferData="transferData"></slot>
+		<slot :transfer-data="transferData"></slot>
 	</component>
 </template>
 

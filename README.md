@@ -94,34 +94,34 @@ The following properties apply to `Drag` components. `Drop` components don't rec
 **default**: `true`  
 Whether or not the draggable is actually draggable. Useful if you need to disable it temporarily.
 
-### `transferData`
+### `transfer-data`
 **validation**: none  
 **default**: `null`  
 The data to be transmitted from the `Drag` to the `Drop` via events. This is passed through to every `Drop`-fired event.
 
-### `effectAllowed`
+### `effect-allowed`
 **validation**: `null` or one of `['none', 'copy', 'copyLink', 'copyMove', 'link', 'linkMove', 'move', 'all', 'uninitialized']`  
 **default**: `null`  
 See https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed.
 
-### `dropEffect`
+### `drop-effect`
 **validation**: `null` or one of `['copy', 'move', 'link', 'none']`  
 **default**: `null`  
 See https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/dropEffect.
 
 ### `image`
-**validation**: `null`, `String`   
+**validation**: `null`, `String`  
 **default**: `null`  
 A URL for an image to be used for the drag image instead of the default. If you'd like to use HTML for the drag image instead, use the `image` slot. More details in the Slots section of this documentation.
 
 If both the `image` prop and `image` slot are present, the prop will be used and the slot will be ignored.
 
-### `imageXOffset`, `imageYOffset`
+### `image-x-offset`, `image-y-offset`
 **validation**: `Number`  
 **default**: `0`, `0`  
 By default, a custom drag image is position so that its top-left corner is anchored to the cursor. You can adjust that positioning with these values.
 
-### `hideImageHtml`
+### `hide-image-html`
 **validation**: `Boolean`  
 **default**: `true`  
 If the `Drag` `image` slot is used, toggle whether or not the HTML is rendered off-screen. See the `image` slot documentation for more details.
@@ -144,9 +144,10 @@ The native browser event. Useful particularly for retrieving the [`dataTransfer`
 
 If you need to pass additional arguments in your event listener, the preferred method is to use the ES6 spread operator with `arguments`:
 
-```javascript
+```vue
 <drag @drag="myListener('foo', ...arguments)">Drag Me</drag>
-
+```
+```javascript
 myListener(myArg, transferData, nativeEvent) {
   // myArg === 'foo'
 }
@@ -154,7 +155,7 @@ myListener(myArg, transferData, nativeEvent) {
 
 If you don't have the spread operator in your environment, you can use a wrapping function:
 
-```javascript
+```vue
 <drag @drag="function(transferData, nativeEvent) { myListener('foo', transferData, nativeEvent) }">
   Drag Me
 </drag>
