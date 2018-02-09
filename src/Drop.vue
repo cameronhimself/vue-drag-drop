@@ -5,52 +5,32 @@
 		@dragover.prevent="emitEvent(events.dragover, $event)"
 		@drop="emitEvent(events.drop, $event)"
 	>
-		<slot :transfer-data="transferData"></slot>
+		<slot :transfer-data="scopedData"></slot>
 	</component>
 </template>
 
 <script>
-	import { transferDataStore } from './stores';
-	import { events, mimeType, mimeDelimiter, smuggleKeyMimeType } from './constants';
+	import transferDataStore from './transferDataStore';
+	import { events } from './constants';
 
 	const insideElements = new Set();
 
 	export default {
+		data() {
+			return { transferData: undefined, isDraggingOver: false };
+		},
 		props: {
 			tag: { type: String, default: 'div' },
 		},
-		data: () => ({ dataKey: null }),
 		computed: {
 			events: () => events,
-			transferDataStore: () => transferDataStore,
-			transferData() {
-				return this.transferDataStore[this.dataKey];
+			scopedData() {
+				return this.isDraggingOver && this.transferData;
 			},
 		},
 		methods: {
 			emitEvent(name, nativeEvent) {
-				// Before emitting the event, set the transfer data.
-				if (name === events.drop) {
-					this.dataKey = nativeEvent.dataTransfer.getData(mimeType);
-				} else {
-					if (! this.dataKey) {
-						// DOMStringList to array
-						const types = nativeEvent.dataTransfer.types;
-						const typesArray = [];
-						for (let i = types.length >>> 0; i--;) {
-							typesArray[i] = types[i];
-						}
-
-						const type = typesArray.find(
-							t => t.startsWith(smuggleKeyMimeType)
-						);
-						if (type) {
-							this.dataKey = type.split(mimeDelimiter)[1];
-						}
-					}
-				}
-
-				// Emit
+				this.transferData = transferDataStore.data;
 				this.$emit(name, this.transferData, nativeEvent);
 
 				/**
@@ -69,18 +49,15 @@
 				// Remove from the set on dragleave.
 				if (name === events.dragleave) {
 					insideElements.delete(nativeEvent.target);
-
-					// If we're no longer inside any elements, delete data.
-					if (! insideElements.size) {
-						this.dataKey = null;
-					}
 				}
 
 				// A drop resets everything.
 				if (name === events.drop) {
-				  this.dataKey = null;
-				  insideElements.clear();
+					insideElements.clear();
 				}
+
+				// Finally, since Vue can't react to Set changes, set a flag indicating drag status.
+				this.isDraggingOver = Boolean(insideElements.size);
 			},
 		},
 	};
