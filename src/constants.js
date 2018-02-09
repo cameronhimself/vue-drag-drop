@@ -1,8 +1,5 @@
 const keyMirror = keys => keys.reduce((acc, k) => (acc[k] = k) && acc, {});
 
-export const mimeType = 'text/x-vue-drag-drop-key';
-export const mimeDelimiter = ':';
-export const smuggleKeyMimeType = `${mimeType}${mimeDelimiter}`;
 export const events = keyMirror([
 	'drag', 'dragend',  'dragenter', 'dragleave', 'dragstart', 'dragover', 'drop',
 ]);
