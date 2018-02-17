@@ -1,11 +1,11 @@
 <template>
 	<component :is="tag"
 		:draggable="draggable"
-		@drag="emitEvent(events.drag, $event)"
-		@dragstart="emitEvent(events.dragstart, $event)"
-		@dragenter="emitEvent(events.dragenter, $event)"
-		@dragleave="emitEvent(events.dragleave, $event)"
-		@dragend="emitEvent(events.dragend, $event)"
+		@drag="debouncedEmitEvent(events.drag, $event)"
+		@dragstart="debouncedEmitEvent(events.dragstart, $event)"
+		@dragenter="debouncedEmitEvent(events.dragenter, $event)"
+		@dragleave="debouncedEmitEvent(events.dragleave, $event)"
+		@dragend="debouncedEmitEvent(events.dragend, $event)"
 	>
 		<slot :transfer-data="scopedData"></slot>
 		<div v-if="hideImageHtml" :style="hideImageStyle">
@@ -18,6 +18,7 @@
 <script>
 	import transferDataStore from './transferDataStore';
 	import { dropEffects, effectsAllowed, events } from './constants';
+	import memoizeDebounce from './memoizeDebounce';
 
 	export default {
 		props: {
@@ -91,6 +92,9 @@
 					this.dragging = false;
 				}
 			},
+			debouncedEmitEvent: memoizeDebounce(function (name, nativeEvent) {
+				this.emitEvent(name, nativeEvent);
+			}),
 		},
 	};
 </script>

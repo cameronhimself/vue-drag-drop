@@ -1,9 +1,9 @@
 <template>
 	<component :is="tag"
-		@dragenter="emitEvent(events.dragenter, $event)"
-		@dragleave="emitEvent(events.dragleave, $event)"
-		@dragover.prevent="emitEvent(events.dragover, $event)"
-		@drop="emitEvent(events.drop, $event)"
+		@dragenter="debouncedEmitEvent(events.dragenter, $event)"
+		@dragleave="debouncedEmitEvent(events.dragleave, $event)"
+		@dragover.prevent="debouncedEmitEvent(events.dragover, $event)"
+		@drop="debouncedEmitEvent(events.drop, $event)"
 	>
 		<slot :transfer-data="scopedData"></slot>
 	</component>
@@ -12,6 +12,7 @@
 <script>
 	import transferDataStore from './transferDataStore';
 	import { events } from './constants';
+	import memoizeDebounce from './memoizeDebounce';
 
 	const insideElements = new Set();
 
@@ -59,6 +60,9 @@
 				// Finally, since Vue can't react to Set changes, set a flag indicating drag status.
 				this.isDraggingOver = Boolean(insideElements.size);
 			},
+			debouncedEmitEvent: memoizeDebounce(function (name, nativeEvent) {
+				this.emitEvent(name, nativeEvent);
+			}),
 		},
 	};
 </script>

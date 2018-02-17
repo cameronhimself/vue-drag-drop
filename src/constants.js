@@ -8,3 +8,4 @@ export const effectsAllowed = keyMirror([
 	'none', 'copy', 'copyLink', 'copyMove', 'link', 'linkMove', 'move', 'all',
 	'uninitialized',
 ]);
+export const debounceEventsMilliseconds = 500;
