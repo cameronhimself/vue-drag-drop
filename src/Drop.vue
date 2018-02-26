@@ -1,9 +1,9 @@
 <template>
 	<component :is="tag"
-		@dragenter="debouncedEmitEvent(events.dragenter, $event)"
-		@dragleave="debouncedEmitEvent(events.dragleave, $event)"
+		@dragenter="emitEvent(events.dragenter, $event)"
+		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragover.prevent="debouncedEmitEvent(events.dragover, $event)"
-		@drop="debouncedEmitEvent(events.drop, $event)"
+		@drop="emitEvent(events.drop, $event)"
 	>
 		<slot :transfer-data="scopedData"></slot>
 	</component>

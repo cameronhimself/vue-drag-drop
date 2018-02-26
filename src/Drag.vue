@@ -2,10 +2,10 @@
 	<component :is="tag"
 		:draggable="draggable"
 		@drag="debouncedEmitEvent(events.drag, $event)"
-		@dragstart="debouncedEmitEvent(events.dragstart, $event)"
-		@dragenter="debouncedEmitEvent(events.dragenter, $event)"
-		@dragleave="debouncedEmitEvent(events.dragleave, $event)"
-		@dragend="debouncedEmitEvent(events.dragend, $event)"
+		@dragstart="emitEvent(events.dragstart, $event)"
+		@dragenter="emitEvent(events.dragenter, $event)"
+		@dragleave="emitEvent(events.dragleave, $event)"
+		@dragend="emitEvent(events.dragend, $event)"
 	>
 		<slot :transfer-data="scopedData"></slot>
 		<div v-if="hideImageHtml" :style="hideImageStyle">
