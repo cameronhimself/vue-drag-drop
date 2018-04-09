@@ -1,7 +1,7 @@
 {
   "name": "vue-drag-drop",
   "description": "A lightweight Vue wrapper that abstracts away the wonkier parts of the Drag and Drop Browser API",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "author": {
     "name": "J. Cameron McDonald",
     "email": "cameronhimself@gmail.com"
@@ -27,12 +27,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cameronhimself/vue-drag-drop.git"
+    "url": "git+https://github.com/Balinea/vue-drag-drop.git"
   },
   "bugs": {
-    "url": "https://github.com/cameronhimself/vue-drag-drop/issues"
+    "url": "https://github.com/Balinea/vue-drag-drop/issues"
   },
-  "homepage": "https://github.com/cameronhimself/vue-drag-drop#readme",
+  "homepage": "https://github.com/Balinea/vue-drag-drop#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -56,7 +56,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "core-js": "^2.5.3",
-    "uniqid": "^4.1.1"
+    "core-js": "^2.5.3"
   }
 }
