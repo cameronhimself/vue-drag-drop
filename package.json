@@ -1,7 +1,7 @@
 {
   "name": "vue-drag-drop",
   "description": "A lightweight Vue wrapper that abstracts away the wonkier parts of the Drag and Drop Browser API",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "author": {
     "name": "J. Cameron McDonald",
     "email": "cameronhimself@gmail.com"
@@ -56,7 +56,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "core-js": "^2.5.3",
-    "uniqid": "^4.1.1"
+    "core-js": "^2.5.3"
   }
 }

@@ -16,11 +16,8 @@
 </template>
 
 <script>
-	import uniqid from 'uniqid';
-	import { transferDataStore } from './stores';
-	import {
-		dropEffects, effectsAllowed, events, mimeType, smuggleKeyMimeType,
-	} from './constants';
+	import transferDataStore from './transferDataStore';
+	import { dropEffects, effectsAllowed, events } from './constants';
 
 	export default {
 		props: {
@@ -35,7 +32,7 @@
 			tag: { type: String, default: 'div' },
 		},
 		data() {
-			return { id: uniqid(), dragging: false };
+			return { dragging: false };
 		},
 		computed: {
 			events: () => events,
@@ -78,9 +75,7 @@
 
 					// Set the transfer data
 					if (this.transferData !== undefined) {
-						this.$set(transferDataStore, this.id, this.transferData);
-						transfer.setData(mimeType, this.id);
-						transfer.setData(`${smuggleKeyMimeType}${this.id}`, this.id);
+						transferDataStore.data = this.transferData;
 					}
 
 					// Indicate that we're dragging.
@@ -92,7 +87,7 @@
 
 				// Clean up stored data on drag end after emitting.
 				if (name === events.dragend) {
-					this.$delete(transferDataStore, this.id);
+					transferDataStore.data = undefined;
 					this.dragging = false;
 				}
 			},
