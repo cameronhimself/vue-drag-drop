@@ -76,6 +76,9 @@
 					// Set the transfer data
 					if (this.transferData !== undefined) {
 						transferDataStore.data = this.transferData;
+						// Set the real transfer data. Not actually used, but necesssary
+						// for browser compatibility.
+						nativeEvent.dataTransfer.setData('text/plain', this.transferData);
 					}
 
 					// Indicate that we're dragging.
