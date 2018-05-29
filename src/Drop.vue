@@ -3,7 +3,7 @@
 		@dragenter="emitEvent(events.dragenter, $event)"
 		@dragleave="emitEvent(events.dragleave, $event)"
 		@dragover.prevent="emitEvent(events.dragover, $event)"
-		@drop="emitEvent(events.drop, $event)"
+		@drop.prevent="emitEvent(events.drop, $event)"
 	>
 		<slot :transfer-data="scopedData"></slot>
 	</component>
