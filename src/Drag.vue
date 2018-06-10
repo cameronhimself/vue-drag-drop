@@ -30,6 +30,7 @@
 			imageYOffset: { type: Number, default: 0 },
 			hideImageHtml: { type: Boolean, default: true },
 			tag: { type: String, default: 'div' },
+			hiddenOffset: { type: String, default: '-1000px' }
 		},
 		data() {
 			return { dragging: false };
@@ -39,7 +40,7 @@
 			scopedData() {
 				return this.dragging && this.transferData;
 			},
-			hideImageStyle: () => ({ position: 'fixed', top: '-1000px' }),
+			hideImageStyle: () => ({ position: 'fixed', top: this.hiddenOffset }),
 		},
 		methods: {
 			emitEvent(name, nativeEvent) {
