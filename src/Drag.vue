@@ -76,9 +76,12 @@
 					// Set the transfer data
 					if (this.transferData !== undefined) {
 						transferDataStore.data = this.transferData;
-						// Set the real transfer data. Not actually used, but necesssary
-						// for browser compatibility.
-						nativeEvent.dataTransfer.setData('text/plain', this.transferData);
+						// Set a dummy string for the real transfer data. Not actually used
+						// for anything, but necesssary for browser compatibility.
+						//
+						// TODO: Maybe this should be the actual data serialized. But since
+						// it's not actually used for anything it seems like a waste of CPU.
+						nativeEvent.dataTransfer.setData('text', '');
 					}
 
 					// Indicate that we're dragging.
