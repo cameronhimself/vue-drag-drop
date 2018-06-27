@@ -205,7 +205,7 @@ Note that this is a [scoped slot](https://vuejs.org/v2/guide/components.html#Sco
 
 ### `image`
 **components:** _`Drag`_  
-**example**: `<drag>Drag Me<template slot="image">I'm being dragged!</template></drag>`  
+**example**: `<drag>Drag Me<template slot="image"><div>I'm being dragged!</div></template></drag>`  
 The contents of this slot will be used as the drag image instead of the browser default. Since the spec likes to be annoying, this content has to be visible in order for it to show up as the drag image, so it's rendered off-screen for you using `position: fixed`. If you need this convenience turned off, or if you need to support a crummy browser that this doesn't work well with, you can set the `hideImageHtml` prop to `false`, which will prevent any additional styling being added. Just be aware that doing so will cause this content to appear inside the `Drag` element. It's up to you how to deal with it.
 
 Multiple `image` slots do nothing; only the first will be used. If both the `image` prop and `image` slot are present, the prop will be used and the slot will be ignored.
