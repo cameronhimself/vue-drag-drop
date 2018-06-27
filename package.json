@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "dist/vue-drag-drop.common.js",
   "unpkg": "dist/vue-drag-drop.browser.js",
-  "module": "index.js",
+  "module": "dist/vue-drag-drop.common.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.dev.js --progress --watch",
     "build": "npm run build:browser && npm run build:common",
