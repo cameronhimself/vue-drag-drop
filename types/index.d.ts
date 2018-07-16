@@ -1,10 +1,9 @@
+import Vue, { PluginObject, VueConstructor } from 'vue';
 
-import Vue, { PluginObject, VueConstructor } from 'vue'
-
-export type DropEffect = 'copy' | 'move' | 'link' | 'none'
-export type EffectsAllowed = 'none' | 'copy' | 'copyLink' | 'copyMove' | 'link' | 'linkMove' | 'move' | 'all' | 'uninitialized'
-export type DragEventName = 'drag' | 'dragend' | 'dragenter' | 'dragleave' | 'dragstart' | 'dragover' | 'drop' 
-export type DragEventObject = { [s: string]: DragEventName }
+export type DropEffect = 'copy' | 'move' | 'link' | 'none';
+export type EffectsAllowed = 'none' | 'copy' | 'copyLink' | 'copyMove' | 'link' | 'linkMove' | 'move' | 'all' | 'uninitialized';
+export type DragEventName = 'drag' | 'dragend' | 'dragenter' | 'dragleave' | 'dragstart' | 'dragover' | 'drop';
+export type DragEventObject = { [s: string]: DragEventName };
 
 declare class Drag extends Vue {
 	// props
@@ -27,7 +26,7 @@ declare class Drag extends Vue {
 	hideImageStyle: Record<string, string>;
 
 	// methods
-	emitEvent: (name: DragEventName, event: DragEvent) => void
+	emitEvent: (name: DragEventName, event: DragEvent) => void;
 }
 
 declare class Drop extends Vue {
@@ -43,11 +42,11 @@ declare class Drop extends Vue {
 	scopedData: Record<string, any> | boolean;
 
 	// methods
-	emitEvent: (name: DragEventName, event: DragEvent) => void
+	emitEvent: (name: DragEventName, event: DragEvent) => void;
 }
 
-declare const VueDragDrop: PluginObject<any>
+declare const VueDragDrop: PluginObject<any>;
 
-export { Drag, Drop }
+export { Drag, Drop };
 
-export default VueDragDrop
+export default VueDragDrop;
