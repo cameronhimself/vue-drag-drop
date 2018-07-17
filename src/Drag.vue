@@ -55,8 +55,8 @@
 				// A number of things need to happen on drag start
 				if (name === events.dragstart) {
 					// Set the allowed effects
-					if (this.effectsAllowed) {
-						transfer.effectsAllowed = this.effectsAllowed;
+					if (this.effectAllowed) {
+						transfer.effectAllowed = this.effectAllowed;
 					}
 
 					// Set the drag image
