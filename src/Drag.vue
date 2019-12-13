@@ -30,7 +30,7 @@
 			imageYOffset: { type: Number, default: 0 },
 			hideImageHtml: { type: Boolean, default: true },
 			tag: { type: String, default: 'div' },
-			imageStyle: {type: Object, default: { position: 'fixed', top: '-1000px' }}
+			imageStyle: {type: Object, default: { position: 'fixed', top: '-1000px' }},
 		},
 		data() {
 			return { dragging: false };
