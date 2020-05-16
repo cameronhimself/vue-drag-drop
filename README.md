@@ -123,7 +123,9 @@ If both the `image` prop and `image` slot are present, the prop will be used and
 ### `image-x-offset`, `image-y-offset`
 **validation**: `Number`  
 **default**: `0`, `0`  
-By default, a custom drag image is positioned so that its top-left corner is anchored to the cursor. You can adjust that positioning with these values.
+By default, a custom drag image is positioned so that its top-left corner is anchored to the cursor. You can adjust that positioning with these values. 
+
+The unit is pixels. If you want to center an element, you can do `:image-x-offset="item.width / 2" :image-y-offset="item.height / 2"`.
 
 ### `hide-image-html`
 **validation**: `Boolean`  
