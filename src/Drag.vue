@@ -86,6 +86,11 @@
 
 					// Indicate that we're dragging.
 					this.dragging = true;
+					
+					// Stop propagation of this event. In case we have nested drag components, 
+					// we only want to drag the innermost dragged component, not start multiple
+					// drags at once (which isn't possible anyway)
+					nativeEvent.stopPropagation();
 				}
 
 				// At last, emit the event.
